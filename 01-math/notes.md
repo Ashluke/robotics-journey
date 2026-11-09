@@ -11,13 +11,13 @@ A gripper sits at P = (2,0) in the world frame. Rotate it 90° counter-clockwise
     Since:
          cos90° = 0 & sin90° = 1
     Therefore:
-        R(-90°) = [0 -1]
+        R(90°) = [0 -1]
                   [1  0]
 
 2. Matrix multiplication & resulting point
 
     Given the original point: P = (2,0)
-    Multiply: P' = R(-90°)P
+    Multiply: P' = R(90°)P
               P' = [0 -1] [2]
                    [1  0] [0]
               P' = [(0)(2) + (-1)(0)]
@@ -26,14 +26,10 @@ A gripper sits at P = (2,0) in the world frame. Rotate it 90° counter-clockwise
                    [2]
     The gripper originally located at (2,0) moves to (0,2) after a 90° counter-clockwise rotation around the origin.
 
-3. Why is this matrix a rotation and not some other transform?
+3. Why is this matrix represents a rotation
 
-    The matrix is considered a rotation matrix because its columns are perpendicular unit vectors. Its first column is (0,1), and its second column is (-1,0). Both columns have a lenght of 1, meaning they preserve the length of vectors, and they are perpendicular to each other.
+    The matrix represents a pure rigid-body rotation rather than a scaling, shearing, or reflection transform due to algebraic properties of its columns and its determinant.
 
-    We can also verify using the determinant:
-        det(R) = (0)(0) - (-1)(1)
-        det(R) = 1
+    * Orthonormal Columns: The columns c1 = (cos0, sin0) and c2 = (-sinΘ, cosΘ) track where the standard basis vectors land. Calculating their lengths using the Pythagorean identity yields ||c1|| = √(cos²Θ + sin²Θ) = 1 and ||c2|| = √(-sin²Θ + cos²Θ) = 1, showing neither axis stretches or shrinks. Computing their dot product yields c1 * c2 = (cosΘ)(-sinΘ) + (sinΘ)(cosΘ) = 0, confirming the axes remain strictly perpendicular. Because the columns are orthonormal, the matrix satisfies the algebraic condition R^TR = I (meaning R^-1 = R^T), which establshes that length and angle preservation hold for any vector.
 
-    A determinant of 1 means that the transformation preserves the area and orientation of the object. It does not stretch, shrink, reflect, or distort the gripper.
-
-    Therefore this matrix represents a pure rotation because it changes the direction or orientation of the point while preserving its distance from the origin and maintaining its original shape and size.
+    * Determinant and Orientation: The determinant evaluates to det(R) = cos²Θ - (-sin²Θ) = cos²Θ + sin²Θ = 1. While any matrix with |det| = 1 guarantees area preservation (volume does not apply in 2D), the sign determines whether orientation is preserved. For example, the reflection matrix M = (1,0 ; 0,-1) also has orthonormal columns and preserves area (|det| = 1), but its determinant is -1 because it flips the planes handedness. The positive determinant det(R) = +1 distinguishes a pure rotation from a reflection by guaranteeing orientation is preserved.
