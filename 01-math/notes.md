@@ -1,6 +1,4 @@
-# math notes
-
-## Diagnostic 1
+# Diagnostic 1
 
 A gripper sits at P = (2,0) in the world frame. Rotate it 90° counter-clockwise about the origin.
 
@@ -8,13 +6,13 @@ A gripper sits at P = (2,0) in the world frame. Rotate it 90° counter-clockwise
 
     The general 2x2 rotation matrix for a counter-clockwise rotation by an angle Θ is:
         R(Θ) = [cosΘ -sinΘ]
-               [sinΘ -cosΘ]
+               [sinΘ  cosΘ]
     Since the gripper rotates 90° counter-clockwise, substitue Θ = 90°
     Since:
          cos90° = 0 & sin90° = 1
     Therefore:
-        R(90°) = [0 -1]
-                 [1  0]
+        R(-90°) = [0 -1]
+                  [1  0]
 
 2. Matrix multiplication & resulting point
 
@@ -39,5 +37,3 @@ A gripper sits at P = (2,0) in the world frame. Rotate it 90° counter-clockwise
     A determinant of 1 means that the transformation preserves the area and orientation of the object. It does not stretch, shrink, reflect, or distort the gripper.
 
     Therefore this matrix represents a pure rotation because it changes the direction or orientation of the point while preserving its distance from the origin and maintaining its original shape and size.
-
-    
